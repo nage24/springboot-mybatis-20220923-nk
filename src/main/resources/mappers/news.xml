@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.mybatis20220923nk.repository.NewsRepository">
+
+    <insert id="save" parameterType="com.boot.mybatis20220923nk.domain.News">
+        <!-- select 빼고 insert update delete 는 리턴이 영향받은 행 수(int)로 설정해줄 필요 없음. -->
+        insert into
+            news_mst
+        values (
+            0,
+            #{news_title},
+            #{news_writer},
+            #{news_broadcasting},
+            #{news_content},
+            now(),
+            now()
+        )
+    </insert>
+
+    <select id="getNews"
+            resultType="com.boot.mybatis20220923nk.domain.News"
+            parameterType="Integer"
+    >
+        <!-- 마이바티스는 기본 자료형이면 파라미터 타입 생략가능함! -->
+        select
+            news_id,
+            news_title,
+            news_writer,
+            news_broadcasting,
+            news_content,
+            create_date,
+            update_date
+        from
+            news_mst
+        where
+            news_id = #{news_id}
+
+
+    </select>
+</mapper>

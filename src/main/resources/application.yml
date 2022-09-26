@@ -1,0 +1,13 @@
+server:
+  port: 8000
+
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://web-study.csk3x5z6pzq3.ap-northeast-2.rds.amazonaws.com:3306/back-20220829
+    username: admin
+    password: 1q2w3e4r
+
+mybatis:
+  mapper-locations:
+    - /mappers/*.xml
