@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Builder
 @NoArgsConstructor
@@ -30,8 +31,8 @@ public class News {
                 .writer(news_writer)
                 .broadcastingName(news_broadcasting)
                 .content(news_content)
-                .createDate(create_date)
-                .updateDate(update_date)
+                .createDate(create_date.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초")))
+                .updateDate(update_date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
                 .build();
     }
 }

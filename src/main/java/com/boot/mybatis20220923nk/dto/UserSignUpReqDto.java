@@ -3,6 +3,7 @@ package com.boot.mybatis20220923nk.dto;
 import com.boot.mybatis20220923nk.domain.User;
 import lombok.Data;
 
+
 @Data
 public class UserSignUpReqDto {
     private String userId;

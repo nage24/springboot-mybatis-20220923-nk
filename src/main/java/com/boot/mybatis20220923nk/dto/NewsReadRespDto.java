@@ -9,14 +9,14 @@ import java.time.LocalDateTime;
 @Builder
 @Data
 public class NewsReadRespDto {
-    private int news_id;
-    private String news_title;
-    private String news_writer;
-    private String news_broadcastingName;
-    private String news_content;
+    private int id;
+    private String title;
+    private String writer;
+    private String broadcastingName;
+    private String content;
 
 
-    private LocalDateTime create_Date;
-    private LocalDateTime update_Date;
+    private String createDate;
+    private String updateDate;
 
 }

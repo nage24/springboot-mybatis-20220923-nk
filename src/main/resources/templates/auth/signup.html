@@ -143,10 +143,11 @@
                 dataType: "json",
                 success: (response) => {
                     alert(response.msg);
+                    console.log(response);
                 }, 
                 error: (error) => {
-                    alert(error);
                     console.log(error);
+                    console.log(error.responseJSON.msg);
                 }
 
             });

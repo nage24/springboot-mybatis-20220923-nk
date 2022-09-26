@@ -32,10 +32,10 @@ public class NewsController {
         int result = newsRepository.save(news);
         
         if(result == 0) {
-            return ResponseEntity.internalServerError().body(new CMRespDto<>(-1, "작성 실패", null));
+            return ResponseEntity.internalServerError().body(new CMRespDto<>(-1, "작성 실패", news));
         }
 
-        return ResponseEntity.ok(new CMRespDto<>(1, "새 글 작성 완료", null));
+        return ResponseEntity.ok(new CMRespDto<>(1, "새 글 작성 완료", news));
     }
 
     @GetMapping("/news/{newsId}")
@@ -47,7 +47,7 @@ public class NewsController {
 
         NewsReadRespDto newsReadRespDto = news.toDto();
 
-        return ResponseEntity.ok(new CMRespDto<>(1, "게시글 불러오기 성공", null));
+        return ResponseEntity.ok(new CMRespDto<>(1, "게시글 불러오기 성공", newsReadRespDto));
     }
 
 }
