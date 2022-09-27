@@ -1,7 +1,10 @@
 package com.boot.mybatis20220923nk.repository;
 
 import com.boot.mybatis20220923nk.domain.News;
+import com.boot.mybatis20220923nk.domain.NewsFile;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper // myBatis 와 연결 해서
 // 얘가 스프링 IoC 으로 구현된 xml 을 가지고
@@ -9,6 +12,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface NewsRepository {
 
     public int save(News news);
+
+    public int saveFiles(List<NewsFile> newsFileList);
 
     public News getNews(int news_id);
 

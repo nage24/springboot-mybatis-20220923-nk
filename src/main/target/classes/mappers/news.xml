@@ -4,11 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.boot.mybatis20220923nk.repository.NewsRepository">
 
-    <insert id="save"
-            parameterType="com.boot.mybatis20220923nk.domain.News"
-            useGeneratedKeys="true"
-            keyProperty="news_id"
-    >
+    <insert id="save" parameterType="com.boot.mybatis20220923nk.domain.News">
         <!-- select 빼고 insert update delete 는 리턴이 영향받은 행 수(int)로 설정해줄 필요 없음. -->
         insert into
             news_mst
@@ -43,24 +39,4 @@
 
 
     </select>
-
-    <insert id="saveFiles"
-            parameterType="java.util.List"
-            useGeneratedKeys="true"
-            keyProperty="news_id"
-    >
-        insert into
-            news_file
-        values
-        <foreach item="newsFile" collection="NewsFileList" separator=","> <!-- newsFile 을 NewsFileList 에서 하나씩 꺼내 반복, 반복 끝날 때마다 , 를 넣어줌 -->
-        (
-            0,
-            #{newsFile.news_id},
-            #{newsFile.file_origin_name},
-            #{newsFile.file_temp_name},
-            now(),
-            now()
-        )
-        </foreach>
-    </insert>
 </mapper>
