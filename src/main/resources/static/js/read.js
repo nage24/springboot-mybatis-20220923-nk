@@ -54,8 +54,8 @@ function setNewsData(news) {
     newsCreateDate.textContent = news.createDate;
     newsContent.textContent = news.content;
     // filename1.jpg / filename2.jpg
-    newsFile.textContent = `
-        filename1.jpg / filename2.jpg
-    `;
+    newsFile.textContent = 
+    `<a href="/download/news?originFileName=${news.fileList[0].file_origin_name}&tempFileName=${news.fileList[0].file_temp_name}">${news.fileList[0].file_origin_name}
+    </a>`;
 
 }
