@@ -2,20 +2,31 @@ server:
   port: 8000
 
 spring:
+
+  # resource 파일 내의 static files 읽어오려면 application.yml 에서 설정 해줘야함.
+  mvc:
+    static-path-pattern: /static/**
+
+
+  # db 연결
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://web-study.csk3x5z6pzq3.ap-northeast-2.rds.amazonaws.com:3306/back-20220829
     username: admin
     password: 1q2w3e4r
+
+
+  # file 설정
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
 
-
+# 마이바티스
 mybatis:
   mapper-locations:
     - /mappers/*.xml
 
+# 파일 경로 file.path
 file:
   path: C:/Program Files/junil/web/springboot/springboot-mybatis-20220923-nk/upload/

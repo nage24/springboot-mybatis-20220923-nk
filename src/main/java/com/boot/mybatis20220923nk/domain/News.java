@@ -23,6 +23,10 @@ public class News {
     private String news_broadcasting;
     private String news_content;
 
+
+    private List<NewsFile> news_file;
+
+
     private LocalDateTime create_date;
     private LocalDateTime update_date;
 
@@ -34,7 +38,8 @@ public class News {
                 .broadcastingName(news_broadcasting)
                 .content(news_content)
                 .createDate(create_date.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초")))
-                .updateDate(update_date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                // .updateDate(update_date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                .fileList(news_file)
                 .build();
     }
 

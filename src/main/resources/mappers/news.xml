@@ -4,6 +4,25 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.boot.mybatis20220923nk.repository.NewsRepository">
 
+    <resultMap id="news_file" type="com.boot.mybatis20220923nk.domain.NewsFile">
+        <result property="file_origin_name" column="file_origin_name"></result>
+        <result property="file_temp_name" column="file_temp_name"></result>
+    </resultMap>
+
+    <resultMap id="news" type="com.boot.mybatis20220923nk.domain.News"> <!-- id 는 변수명  -->
+        <result property="news_id" column="news_id"></result> <!-- 변수명 컬럼명 동일하게 -->
+        <result property="news_title" column="news_title"></result>
+        <result property="news_writer" column="news_writer"></result>
+        <result property="news_broadcasting" column="news_broadcasting"></result>
+        <result property="news_content" column="news_content"></result>
+        <result property="create_date" column="create_date"></result>
+
+        <collection property="news_file" javaType="list" resultMap="news_file"></collection>
+    </resultMap>
+
+
+
+
     <insert id="save"
             parameterType="com.boot.mybatis20220923nk.domain.News"
             useGeneratedKeys="true"
@@ -23,11 +42,15 @@
         )
     </insert>
 
+
+
+
     <select id="getNews"
-            resultType="com.boot.mybatis20220923nk.domain.News"
+            resultMap="news"
             parameterType="Integer"
-    >
+    > <!-- resultType="com.boot.mybatis20220923nk.domain.News" -->
         <!-- 마이바티스는 기본 자료형이면 파라미터 타입 생략가능함! -->
+        <!--
         select
             news_id,
             news_title,
@@ -40,9 +63,31 @@
             news_mst
         where
             news_id = #{news_id}
+        -->
 
+        SELECT
+        nm.news_id,
+        nm.news_title,
+        nm.news_writer,
+        nm.news_broadcasting,
+        nm.news_content,
+
+        nf.file_origin_name,
+        nf.file_temp_name,
+
+        nm.create_date
+
+        FROM
+        news_mst nm
+        LEFT OUTER JOIN news_file nf ON(nf.news_id = nm.news_id)
+
+        WHERE
+        nm.news_id = #{news_id}
 
     </select>
+
+
+
 
     <insert id="saveFiles"
             parameterType="java.util.List"
@@ -63,4 +108,6 @@
         )
         </foreach>
     </insert>
+
+
 </mapper>
